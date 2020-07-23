@@ -1,10 +1,12 @@
 {
   "presets": ["@babel/preset-env"],
   "plugins": [
-    ["@babel/plugin-transform-arrow-functions", { "spec": true }],
+    ["@babel/plugin-transform-arrow-functions"],
+    ["@babel/transform-runtime"],
     ["@babel/plugin-transform-destructuring"],
     ["@babel/plugin-transform-spread"],
     ["@babel/plugin-transform-parameters"],
-    ["@babel/plugin-transform-modules-commonjs"]
+    ["@babel/plugin-transform-modules-commonjs"],
+    ["@babel/plugin-transform-async-to-generator"]
   ]
 }

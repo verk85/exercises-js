@@ -1,1 +1,3 @@
-export const sum = (a = 0, b = 0) => a + b;
+import { runBatches, tasks, batch_size } from "./exercise-01";
+
+runBatches(tasks, batch_size).then(console.log);
