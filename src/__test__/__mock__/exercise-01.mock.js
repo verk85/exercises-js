@@ -1,4 +1,2 @@
-export const mocktasks = [
-  taskFactorySample(0, true, 1),
-  taskFactorySample(0, true, 2),
-];
+export const mockTaskFactory = (delay, resolve, val) => () =>
+  new Promise((res, rej) => setTimeout(resolve ? res : rej, delay, val));
