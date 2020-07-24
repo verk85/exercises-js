@@ -32,7 +32,6 @@ test("respect batch sizes", async () => {
   ];
   const [{ value: value1 }] = await runBatches(mockTasksTime, 2);
   const date = Date.now();
-
   expect(value1 / 10000).toBeCloseTo((date - 1500) / 10000);
 });
 
@@ -47,6 +46,36 @@ test("respect batch sizes 2", async () => {
   ];
   const [{ value: value1 }] = await runBatches(mockTasksTime, 6);
   const date = Date.now();
-
   expect(value1 / 10000).toBeCloseTo((date - 500) / 10000);
+});
+test("expected runtime", async () => {
+  const mockTasksTime = [
+    mockTaskFactory(500, true, Date.now()),
+    mockTaskFactory(500, true, Date.now()),
+    mockTaskFactory(500, true, Date.now()),
+    mockTaskFactory(500, true, Date.now()),
+    mockTaskFactory(500, true, Date.now()),
+    mockTaskFactory(500, true, Date.now()),
+  ];
+  const date1 = Date.now();
+  await runBatches(mockTasksTime, 2);
+  const date2 = Date.now();
+  expect(date2 - date1).toBeGreaterThanOrEqual(1500);
+  expect(date2 - date1).toBeLessThan(1550);
+});
+
+test("expected runtime 2", async () => {
+  const mockTasksTime = [
+    mockTaskFactory(500, true, Date.now()),
+    mockTaskFactory(500, true, Date.now()),
+    mockTaskFactory(500, true, Date.now()),
+    mockTaskFactory(500, true, Date.now()),
+    mockTaskFactory(500, true, Date.now()),
+    mockTaskFactory(500, true, Date.now()),
+  ];
+  const date1 = Date.now();
+  await runBatches(mockTasksTime, 6);
+  const date2 = Date.now();
+  expect(date2 - date1).toBeGreaterThanOrEqual(500);
+  expect(date2 - date1).toBeLessThan(550);
 });
