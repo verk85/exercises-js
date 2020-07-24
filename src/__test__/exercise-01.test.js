@@ -22,12 +22,31 @@ test("outputs in expected format", () => {
 });
 
 test("respect batch sizes", async () => {
-  const mockTasks = [
+  const mockTasksTime = [
+    mockTaskFactory(500, true, Date.now()),
+    mockTaskFactory(500, true, Date.now()),
+    mockTaskFactory(500, true, Date.now()),
+    mockTaskFactory(500, true, Date.now()),
     mockTaskFactory(500, true, Date.now()),
     mockTaskFactory(500, true, Date.now()),
   ];
-  const [{ value: value1 }, { value: value2 }] = await runBatches(mockTasks, 2);
+  const [{ value: value1 }] = await runBatches(mockTasksTime, 2);
   const date = Date.now();
 
-  expect(value1 / 1000).toBeCloseTo((date - 500) / 1000);
+  expect(value1 / 10000).toBeCloseTo((date - 1500) / 10000);
+});
+
+test("respect batch sizes 2", async () => {
+  const mockTasksTime = [
+    mockTaskFactory(500, true, Date.now()),
+    mockTaskFactory(500, true, Date.now()),
+    mockTaskFactory(500, true, Date.now()),
+    mockTaskFactory(500, true, Date.now()),
+    mockTaskFactory(500, true, Date.now()),
+    mockTaskFactory(500, true, Date.now()),
+  ];
+  const [{ value: value1 }] = await runBatches(mockTasksTime, 6);
+  const date = Date.now();
+
+  expect(value1 / 10000).toBeCloseTo((date - 500) / 10000);
 });
