@@ -1,6 +1,7 @@
 //Create a pool of N running tasks from an M sized list. Notify when all tasks are done.
 export const taskFactorySample = (delay, resolve, val) => () =>
   new Promise((res, rej) => setTimeout(resolve ? res : rej, delay, val));
+
 export const tasks = [
   taskFactorySample(7000, true, 1),
   taskFactorySample(2000, true, 2),
