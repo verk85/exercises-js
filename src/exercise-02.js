@@ -17,13 +17,13 @@ export async function queryRetry(
   delayIncrement = 1000,
   delay = false
 ) {
-  for (let i = 1; i <= maxRetry; i++) {
+  for (let i = 0; i < maxRetry; i++) {
     try {
       const val = await fn();
       return val;
     } catch (error) {
       if (i !== maxRetry) {
-        console.log("Attemp: ", i);
+        console.log("Attemp: ", i + 1, " delay = ", delayIncrement);
         delay ? (delayIncrement += delayIncrement) : delayIncrement;
         await new Promise((r) => setTimeout(r, delayIncrement));
       }
