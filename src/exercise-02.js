@@ -17,21 +17,16 @@ export async function queryRetry(
   delayIncrement = 1000,
   delay = false
 ) {
-  try {
-    const val = await fn();
-    return val;
-  } catch (error) {
-    console.log("Attemps left: ", maxRetry);
-    if (maxRetry) {
+  for (let i = 1; i <= maxRetry; i++) {
+    try {
+      const val = await fn();
+      return val;
+    } catch (error) {
+      delay ? delayIncrement + delayIncrement : delayIncrement;
       await new Promise((r) => setTimeout(r, delayIncrement));
-      return queryRetry(
-        fn,
-        maxRetry - 1,
-        delay ? delayIncrement + delayIncrement : delayIncrement,
-        delay
-      );
-    } else throw new Error("Max retries reached");
+    }
   }
+  throw new Error("Max retries reached");
 }
 
 // queryRetry(
