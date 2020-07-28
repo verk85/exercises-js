@@ -23,7 +23,7 @@ async function queryRetry(
   } catch (error) {
     if (maxRetry) {
       await new Promise((r) => setTimeout(r, delayIncrement));
-      return retry(
+      return queryRetry(
         fn,
         maxRetry - 1,
         delay ? delayIncrement + delayIncrement : delayIncrement,
