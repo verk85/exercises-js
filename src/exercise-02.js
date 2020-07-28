@@ -22,8 +22,11 @@ export async function queryRetry(
       const val = await fn();
       return val;
     } catch (error) {
-      delay ? delayIncrement + delayIncrement : delayIncrement;
-      await new Promise((r) => setTimeout(r, delayIncrement));
+      if (i !== maxRetry) {
+        console.log("Attemp: ", i);
+        delay ? (delayIncrement += delayIncrement) : delayIncrement;
+        await new Promise((r) => setTimeout(r, delayIncrement));
+      }
     }
   }
   throw new Error("Max retries reached");

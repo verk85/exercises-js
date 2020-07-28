@@ -1,7 +1,7 @@
 import { queryRetry, urlQuery } from "./exercise-02";
 
-const maxRetry = 5;
-const delayIncrement = 1000;
+const maxRetry = 4;
+const delayIncrement = 500;
 const delay = true;
 
 var date = new Date();
