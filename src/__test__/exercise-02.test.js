@@ -39,7 +39,31 @@ test("respects delay without increment", async () => {
   const firstTime = Date.now();
   await queryRetry(oneSecondsPassed(), maxRetry, delayIncrement, delay);
   const secondTime = Date.now();
-  console.log(secondTime - firstTime);
   expect(secondTime - firstTime).toBeGreaterThan(1000);
   expect(secondTime - firstTime).toBeLessThan(1100);
+});
+
+test("respects delay without increment", async () => {
+  const maxRetry = 4;
+  const delayIncrement = 500;
+  const delay = false;
+
+  const firstTime = Date.now();
+  await queryRetry(oneSecondsPassed(), maxRetry, delayIncrement, delay);
+  const secondTime = Date.now();
+  expect(secondTime - firstTime).toBeGreaterThan(1000);
+  expect(secondTime - firstTime).toBeLessThan(1100);
+});
+test("reeturns expected output", async () => {
+  const maxRetry = 4;
+  const delayIncrement = 500;
+  const delay = false;
+  const data = await queryRetry(
+    oneSecondsPassed(),
+    maxRetry,
+    delayIncrement,
+    delay
+  );
+
+  expect(data).toBe(`Successful Try`);
 });

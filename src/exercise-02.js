@@ -9,7 +9,6 @@ export const urlQuery = (url) => () => fetch(url);
 
 export async function queryRetry(fn, maxRetry, delayIncrement, delay) {
   for (let i = 0; i < maxRetry; i++) {
-    console.log("delayIncrement: ", delayIncrement);
     try {
       const val = await fn();
       return val;

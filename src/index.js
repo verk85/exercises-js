@@ -8,8 +8,8 @@ var date = new Date();
 // resolve when more than 2sec from start date
 async function twoSecondsPassed() {
   const curr = new Date() - date;
-  if (curr > 1000) return `yay! ${curr}`;
-  else throw `${curr} < 1000`;
+  if (curr > 2000) return `yay! ${curr}`;
+  else throw `${curr} < 2000`;
 }
 
 // retry 5 times with exponential backoff (100ms, 200ms, 400ms, 800ms, 1.6s, err)
