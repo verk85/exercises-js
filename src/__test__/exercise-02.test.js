@@ -54,7 +54,7 @@ test("respects delay without increment", async () => {
   expect(secondTime - firstTime).toBeGreaterThan(1000);
   expect(secondTime - firstTime).toBeLessThan(1100);
 });
-test("reeturns expected output", async () => {
+test("returns expected output", async () => {
   const maxRetry = 4;
   const delayIncrement = 500;
   const delay = false;
@@ -64,6 +64,5 @@ test("reeturns expected output", async () => {
     delayIncrement,
     delay
   );
-
   expect(data).toBe(`Successful Try`);
 });

@@ -1,27 +1,13 @@
-import { queryRetry } from "./exercise-02";
+import { cancellableFetch, fetchURL } from "./exercise-03";
+// Create a function that resolve in 1 seconds. (We will cancel it in 0.5 secs)
+const result = cancellableFetch(fetchURL);
 
-const maxRetry = 4;
-const delayIncrement = 250;
-const delay = true;
+result
+  .then((data) => {
+    console.log("Done: ", data);
+  })
+  .catch((err) => {
+    console.log("Error: ", err);
+  });
 
-var date = new Date();
-// resolve when more than 2sec from start date
-async function twoSecondsPassed() {
-  const curr = new Date() - date;
-  if (curr > 2000) return `yay! ${curr}`;
-  else throw `${curr} < 2000`;
-}
-
-// retry 5 times with exponential backoff (100ms, 200ms, 400ms, 800ms, 1.6s, err)
-queryRetry(twoSecondsPassed, maxRetry, delayIncrement, delay)
-  .then(console.log)
-  .catch(console.log);
-
-// queryRetry(
-//   urlQuery("https://pokeapi.co/api/v2/pokemon/ditto"),
-//   maxRetry,
-//   delay,
-//   delayIncrement
-// )
-//   .then(console.log)
-//   .catch(console.log);
+result.cancel(new Error("Promise cancelled"));
