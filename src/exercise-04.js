@@ -7,15 +7,15 @@ export function mergeArrays(largeArray, smallArray) {
     0,
     0,
   ];
-  let substitute;
+
   while (indexLargeArr < largeArrSize && indexSmallArr < smallArrSize) {
     if (largeArray[indexLargeArr] < smallArray[indexSmallArr]) {
       indexLargeArr++;
     } else {
-      largeArray.pop();
-      substitute = largeArray.splice(indexLargeArr++);
-      largeArray.push(smallArray[indexSmallArr++]);
-      largeArray.push(...substitute);
+      for (let i = largeArrSize - 1; i > indexLargeArr; i--) {
+        largeArray[i] = largeArray[i - 1];
+      }
+      largeArray[indexLargeArr++] = smallArray[indexSmallArr++];
     }
   }
   return largeArray;
