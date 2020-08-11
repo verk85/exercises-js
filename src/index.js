@@ -1,7 +1,7 @@
 import { mergeArrays } from "./exercise-04";
 
-const largeArray = [1, 3, 5, 7, 9].concat(new Array(5));
-const smallArray = [0, 2, 4, 6, 8];
+const largeArray = [0, 4, 5, 6, 9].concat(new Array(5));
+const smallArray = [1, 2, 3, 7, 8];
 const largeArraySize = largeArray.length;
 
 mergeArrays(largeArray, smallArray);
