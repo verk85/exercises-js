@@ -8,7 +8,13 @@ describe("Tests for mergeArrays", () => {
     mergeArrays(largeArray, smallArray);
     expect(largeArraySize).toBe(10);
   });
-
+  it("should return an array of size 15", () => {
+    const largeArray = [1, 3, 5, 7, 9, 10, 11].concat(new Array(8));
+    const smallArray = [0, 2, 4, 6, 8, 12, 13, 14];
+    const largeArraySize = largeArray.length;
+    mergeArrays(largeArray, smallArray);
+    expect(largeArraySize).toBe(15);
+  });
   it("should return a sorted array", () => {
     const largeArray = [1, 3, 5, 7, 9].concat(new Array(5));
     const smallArray = [0, 2, 4, 6, 8];
