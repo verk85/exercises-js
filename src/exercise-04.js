@@ -15,12 +15,7 @@ export function mergeArrays(largeArray, smallArray) {
     ) {
       largeArray[largeArrayIndex--] = smallArray[smallArrayLastPosition--];
     } else {
-      [largeArray[largeArrayIndex], largeArray[largeArrayLastPosition]] = [
-        largeArray[largeArrayLastPosition],
-        largeArray[largeArrayIndex],
-      ];
-      largeArrayIndex--;
-      largeArrayLastPosition--;
+      largeArray[largeArrayIndex--] = largeArray[largeArrayLastPosition--];
     }
   }
 }
