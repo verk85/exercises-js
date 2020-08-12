@@ -1,23 +1,19 @@
 // A6 - Merge two sorted arrays where one has enough space at the end for the other
 
 export function mergeArrays(largeArray, smallArray) {
-  let [largeArraySize, largeArrayIndex, smallArrayIndex] = [
-    largeArray.length,
-
-    0,
-    0,
+  let [largeArrayLastPosition, smallArrayLastPosition, largeArrayIndex] = [
+    smallArray.length - 1,
+    smallArray.length - 1,
+    largeArray.length - 1,
   ];
 
-  for (
-    largeArrayIndex;
-    largeArrayIndex < largeArraySize - 1;
-    largeArrayIndex++
-  ) {
-    if (largeArray[largeArrayIndex] < smallArray[smallArrayIndex]) {
-      continue;
+  while (smallArrayLastPosition >= 0) {
+    if (
+      largeArray[largeArrayLastPosition] < smallArray[smallArrayLastPosition]
+    ) {
+      largeArray[largeArrayIndex--] = smallArray[smallArrayLastPosition--];
     } else {
-      largeArray.copyWithin(largeArrayIndex + 1, largeArrayIndex);
-      largeArray[largeArrayIndex] = smallArray[smallArrayIndex++];
+      largeArray[largeArrayIndex--] = largeArray[largeArrayLastPosition--];
     }
   }
 }
