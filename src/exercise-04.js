@@ -9,11 +9,17 @@ export function mergeArrays(largeArray, smallArray) {
 
   while (smallArrayLastPosition >= 0) {
     if (
-      largeArray[largeArrayLastPosition] < smallArray[smallArrayLastPosition]
+      largeArray[largeArrayLastPosition] < smallArray[smallArrayLastPosition] ||
+      largeArrayLastPosition < 0
     ) {
       largeArray[largeArrayIndex--] = smallArray[smallArrayLastPosition--];
     } else {
-      largeArray[largeArrayIndex--] = largeArray[largeArrayLastPosition--];
+      [largeArray[largeArrayIndex], largeArray[largeArrayLastPosition]] = [
+        largeArray[largeArrayLastPosition],
+        largeArray[largeArrayIndex],
+      ];
+      largeArrayIndex--;
+      largeArrayLastPosition--;
     }
   }
 }
