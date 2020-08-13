@@ -1,10 +1,5 @@
-import { mergeArrays } from "./exercise-04";
+import { reverseBlocks } from "./exercise-05";
+const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const blockSize = 3;
 
-const largeArray = [5, 6, 7, 8, 9].concat(new Array(5));
-const smallArray = [0, 1, 2, 3, 4];
-const largeArraySize = largeArray.length;
-
-mergeArrays(largeArray, smallArray);
-
-console.log(largeArray); // Expecting: [0,1,2,3,4,5,6,7,8,9]
-console.log(largeArraySize === largeArray.length);
+reverseBlocks(arr, blockSize);
